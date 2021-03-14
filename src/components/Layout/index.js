@@ -17,7 +17,7 @@ const Layout = (props) => {
             <span className={s.separator}></span>
           </div>
           <div className={[s.desc, s.full].join(' ')}>
-            {props.descr && <p>{props.descr}</p>}
+            {props.children && <p>{props.children}</p>}
           </div>
         </article>
       </div>
