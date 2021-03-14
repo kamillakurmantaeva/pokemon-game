@@ -163,7 +163,7 @@ const App = () => {
             key={item.id}
             name={item.name}
             img={item.img}
-            id={item.id}      
+            id={item.id}
             type={item.type}
             values={item.values}
           />
