@@ -1,3 +1,4 @@
+import cn from 'classnames';
 import s from './style.module.css';
 
 const Layout = (props) => {
@@ -16,7 +17,7 @@ const Layout = (props) => {
             {props.title && <h3>{props.title}</h3>}
             <span className={s.separator}></span>
           </div>
-          <div className={[s.desc, s.full].join(' ')}>{props.children}</div>
+          <div className={cn(s.desc, s.full)}>{props.children}</div>
         </article>
       </div>
     </section>
