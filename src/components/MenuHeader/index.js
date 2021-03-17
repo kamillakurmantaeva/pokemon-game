@@ -5,9 +5,7 @@ import NavBar from './NavBar';
 
 const MenuHeader = () => {
   const [isMenu, setMenu] = useState(false);
-  const onChangeMenu = (menu) => {
-    setMenu(menu);
-  };
+  const onChangeMenu = () => setMenu(!isMenu);
 
   return (
     <div>

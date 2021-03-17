@@ -3,7 +3,7 @@ import s from './style.module.css';
 
 const NavBar = ({ changeMenu, onChangeMenu }) => {
   const handleClick = () => {
-    onChangeMenu && onChangeMenu(!changeMenu);
+    onChangeMenu && onChangeMenu();
   };
 
   return (
