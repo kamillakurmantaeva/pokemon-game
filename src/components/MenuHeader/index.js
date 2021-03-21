@@ -3,14 +3,14 @@ import Menu from './Menu';
 import NavBar from './NavBar';
 // import s from './style.module.css';
 
-const MenuHeader = () => {
-  const [isMenu, setMenu] = useState(false);
+const MenuHeader = ({ bgActive }) => {
+  const [isMenu, setMenu] = useState(null);
   const onChangeMenu = () => setMenu(!isMenu);
 
   return (
     <div>
-      <Menu changeMenu={isMenu} />
-      <NavBar changeMenu={isMenu} onChangeMenu={onChangeMenu} />
+      <Menu isOpen={isMenu} />
+      <NavBar isOpen={isMenu} bgActive={bgActive} onChangeMenu={onChangeMenu} />
     </div>
   );
 };
