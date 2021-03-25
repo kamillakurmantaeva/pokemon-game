@@ -7,7 +7,7 @@ import s from './style.module.css';
 
 const StartPage = () => {
   const firebase = useContext(FirebaseContext);
-  const selectedPokemons = useContext(PokemonContext).pokemon;
+  const { pokemon } = useContext(PokemonContext);
   const [pokemons, setPokemons] = useState({});
 
   useEffect(() => {
@@ -26,15 +26,15 @@ const StartPage = () => {
       },
     }));
 
-    if (!selectedPokemons[key]) {
-      Object.defineProperty(selectedPokemons, key, {
+    if (!pokemon[key]) {
+      Object.defineProperty(pokemon, key, {
         value: pokemons[key],
         configurable: true,
         enumerable: true,
         writable: true,
       });
     } else {
-      delete selectedPokemons[key];
+      delete pokemon[key];
     }
   };
 

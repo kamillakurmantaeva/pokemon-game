@@ -4,7 +4,6 @@ import Layout from '../../components/Layout';
 import imageFirst from '../../assets/bg1.png';
 import imageSecond from '../../assets/bg2.jpg';
 import MenuHeader from '../../components/MenuHeader';
-// import s from './style.module.css';
 
 const HomePage = () => {
   return (

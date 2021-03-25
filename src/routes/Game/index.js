@@ -1,14 +1,16 @@
+import { useState } from 'react';
 import { Route, Switch, useRouteMatch } from 'react-router';
 import { PokemonContext } from '../../context/pokemonContext';
 import BoardPage from './routes/Board';
 import FinishPage from './routes/Finish';
 import StartPage from './routes/Start';
-// import s from './style.module.css';
 
 const GamePage = () => {
   const match = useRouteMatch();
+  const [selectedPokemons, setSelectedPokemons] = useState({});
+  
   return (
-    <PokemonContext.Provider value={{ pokemon: {} }}>
+    <PokemonContext.Provider value={{ pokemon: selectedPokemons }}>
       <Switch>
         <Route path={`${match.path}/`} exact component={StartPage} />
         <Route path={`${match.path}/board`} component={BoardPage} />
