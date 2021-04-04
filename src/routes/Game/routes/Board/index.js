@@ -3,6 +3,7 @@ import { useHistory } from 'react-router';
 import PokemonCard from '../../../../components/PokemonCard';
 import { PokemonContext } from '../../../../context/pokemonContext';
 import PlayerBoard from './component/PlayerBoard';
+import Result from './component/Result';
 import s from './style.module.css';
 
 const counterWin = (board, player1, player2) => {
@@ -22,7 +23,7 @@ const counterWin = (board, player1, player2) => {
 };
 
 const BoardPage = () => {
-  const { pokemon } = useContext(PokemonContext);
+  const { pokemon, setPokemonsEnemy } = useContext(PokemonContext);
   const [board, setBoard] = useState([]);
   const [player1, setPlayer1] = useState(() => {
     return Object.values(pokemon).map((item) => ({
@@ -31,8 +32,10 @@ const BoardPage = () => {
     }));
   });
   const [player2, setPlayer2] = useState([]);
+  const [copyPlayer2, setCopyPlayer2] = useState({});
   const [choiceCard, setChoiceCard] = useState(null);
   const [steps, setSteps] = useState(0);
+  const [result, setResult] = useState(null);
   const history = useHistory();
 
   useEffect(() => {
@@ -53,6 +56,7 @@ const BoardPage = () => {
           possession: 'red',
         }));
       });
+      setCopyPlayer2(player2Request.data);
     }
     fetchData();
   }, []);
@@ -60,6 +64,15 @@ const BoardPage = () => {
   if (Object.keys(pokemon).length === 0) {
     history.replace('/game');
   }
+
+  const handleClickResult = () => {
+    if (result === 'win') {
+      setPokemonsEnemy(copyPlayer2);
+      history.push('finish');
+    } else {
+      history.replace('/game');
+    }
+  };
 
   const handleClickBoardPlate = async (position) => {
     if (choiceCard) {
@@ -103,11 +116,11 @@ const BoardPage = () => {
       const [count1, count2] = counterWin(board, player1, player2);
 
       if (count1 > count2) {
-        alert('WIN');
+        setResult('win');
       } else if (count1 < count2) {
-        alert('LOSE');
+        setResult('lose');
       } else {
-        alert('DRAW');
+        setResult('draw');
       }
     }
   }, [steps, board, player1, player2]);
@@ -139,6 +152,11 @@ const BoardPage = () => {
           onClickCard={(card) => setChoiceCard(card)}
         />
       </div>
+      {result && (
+        <div className={s.result} onClick={handleClickResult}>
+          <Result type={result} />
+        </div>
+      )}
     </div>
   );
 };

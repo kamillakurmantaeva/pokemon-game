@@ -45,3 +45,7 @@
   width: 18vw;
   height: 50.3vw;
 }
+
+.result {
+  cursor: pointer;
+}

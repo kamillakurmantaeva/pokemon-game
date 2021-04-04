@@ -7,7 +7,7 @@ import s from './style.module.css';
 
 const StartPage = () => {
   const firebase = useContext(FirebaseContext);
-  const { pokemon } = useContext(PokemonContext);
+  const { pokemon, setSelectedPokemons } = useContext(PokemonContext);
   const [pokemons, setPokemons] = useState({});
 
   useEffect(() => {
@@ -27,19 +27,17 @@ const StartPage = () => {
     }));
 
     if (!pokemon[key]) {
-      Object.defineProperty(pokemon, key, {
-        value: pokemons[key],
-        configurable: true,
-        enumerable: true,
-        writable: true,
-      });
+      setSelectedPokemons((prevState) => ({
+        ...prevState,
+        [key]: { ...pokemons[key] },
+      }));
     } else {
       delete pokemon[key];
     }
   };
 
   return (
-    <div>
+    <div className={s.root}>
       <Link to="game/board">
         <button className={s.buttonWrap}>Start Game</button>
       </Link>

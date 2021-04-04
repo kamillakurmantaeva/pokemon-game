@@ -81,7 +81,6 @@
   position: absolute;
   top: 0;
   right: 0;
-  position: fixed;
   background: url(https://raw.githubusercontent.com/yagoestevez/fcc-portfolio/master/src/Images/Moon.svg?sanitize=true)
     right 150% no-repeat;
   background-size: 30% 30%;
