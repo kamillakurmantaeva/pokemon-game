@@ -1,30 +1,40 @@
-import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import Layout from '../../components/Layout';
 import imageFirst from '../../assets/bg1.png';
-import imageSecond from '../../assets/bg2.jpg';
-import MenuHeader from '../../components/MenuHeader';
-// import s from './style.module.css';
+import imageSecond from '../../assets/bg2.png';
 
 const HomePage = () => {
   return (
     <>
-      <MenuHeader />
       <Header
         title="Pokemon Game"
         descr="This is simple triple triad card game"
       />
-      <Layout title="Rules" urlBg={imageFirst}>
-        <p>Some text here...</p>
-      </Layout>
-      <Layout title="Title" colorBg="red">
+      <Layout title="Description" urlBg={imageFirst}>
         <p>
           In the game two players face off against one another, one side playing
           as "blue", the other as "red" on a 3x3 grid.
-          <br />
+        </p>
+        <p>
           Each player has five cards in a hand and the aim is to capture the
           opponent's cards by turning them into the player's own color of red or
           blue.
+        </p>
+      </Layout>
+      <Layout title="Rules" urlBg={imageSecond}>
+        <p>
+          Triple Triad is played on a three-by-three (3x3) square grid of blank
+          spaces where cards will be placed as the game progress. Each card has
+          four numbers (known as Ranks) placed in top left corner; each number
+          corresponds to one of the four sides of the card. These numbers range
+          from one to ten.
+        </p>
+        <p>
+          In a basic game each player has five cards. A coin-flip decides who
+          begins. The player who wins the coin toss may choose a card to play
+          anywhere on the grid. After the first card is played, the opposing
+          player may play a card on any unoccupied space on the board. The game
+          continues with players' turns alternating.
         </p>
         <p>
           To win, a majority of the total ten cards played (including the one
@@ -38,10 +48,6 @@ const HomePage = () => {
           the player's color instead.
         </p>
       </Layout>
-      <Layout title="Title" urlBg={imageSecond}>
-        <p>Some text here...</p>
-      </Layout>
-      <Footer />
     </>
   );
 };
