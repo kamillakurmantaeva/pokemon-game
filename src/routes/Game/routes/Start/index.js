@@ -1,21 +1,29 @@
 import { useContext, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PokemonCard from '../../../../components/PokemonCard';
-import { FirebaseContext } from '../../../../context/firebaseContext';
 import { PokemonContext } from '../../../../context/pokemonContext';
+import {
+  getPokemonsAsync,
+  selectPokemonsData,
+} from '../../../../store/pokemons';
 import s from './style.module.css';
 
 const StartPage = () => {
-  const firebase = useContext(FirebaseContext);
   const { pokemon, setSelectedPokemons } = useContext(PokemonContext);
+  // const isLoading = useSelector(selectPokemonsLoading);
+  const pokemonsRedux = useSelector(selectPokemonsData);
+  const dispatch = useDispatch();
+
   const [pokemons, setPokemons] = useState({});
 
   useEffect(() => {
-    firebase.getPokemonSoket((pokemons) => {
-      setPokemons(pokemons);
-    });
-    return () => firebase.offPokemonSoket();
-  }, [firebase]);
+    dispatch(getPokemonsAsync());
+  }, [dispatch]);
+
+  useEffect(() => {
+    setPokemons(pokemonsRedux);
+  }, [pokemonsRedux]);
 
   const handleChangeSelected = (key) => {
     setPokemons((prevState) => ({
